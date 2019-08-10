@@ -2,10 +2,9 @@
   <div id="csv-to-table">
     <form action>
       <div>
-        <label>Heade Row count</label>
+        <label>Header Row count</label>
         <input type="number" v-model="headerRowCount" />
       </div>
-
       <div>
         <input type="file" @change="uploaded" />
       </div>
@@ -15,11 +14,17 @@
       <table>
         <thead>
           <tr v-for="(row, rowIndex) in csvHeader" v-bind:key="rowIndex">
+            <td v-if="showCheckbox && rowIndex === 0">
+              <input type="checkbox" />
+            </td>
             <th v-for="(data, colIndex) in row" v-bind:key="colIndex">{{ data }}</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(row, rowIndex) in csvData" v-bind:key="rowIndex">
+            <td v-if="showCheckbox">
+              <input type="checkbox" @change="onCheckBoxCheck(row)" />
+            </td>
             <td v-for="(data, colIndex) in row" v-bind:key="colIndex">{{ data }}</td>
           </tr>
         </tbody>
@@ -33,6 +38,13 @@ import Encoding from "encoding-japanese";
 
 export default {
   name: "CsvToTable",
+  props: {
+    showCheckbox: {
+      type: Boolean,
+      default: true,
+      required: false
+    }
+  },
   data() {
     return {
       headerRowCount: 2, // default 0
@@ -41,25 +53,14 @@ export default {
     };
   },
   methods: {
+    onCheckBoxCheck: function(row) {
+      console.log(row);
+    },
     uploaded: function(e) {
       const file = e.target && e.target.files && e.target.files[0];
 
       if (file) {
-        const reader = new FileReader();
-        reader.onerror = function() {
-          alert(`${file}の読み込みに失敗しました。`);
-        };
-        reader.onload = () => {
-          const str = String.fromCharCode.apply(
-            "",
-            new Uint8Array(reader.result)
-          );
-
-          const sjisData = Encoding.convert(str, {
-            to: "UNICODE",
-            from: "AUTO"
-          });
-
+        this.loadCsv(file, sjisData => {
           const lineArray = sjisData.split("\r");
           const itemArray = [];
 
@@ -76,10 +77,29 @@ export default {
           } else {
             this.csvData = itemArray;
           }
-        };
-
-        reader.readAsArrayBuffer(file);
+        });
       }
+    },
+    loadCsv: function(file, callBack) {
+      const reader = new FileReader();
+      reader.onerror = function() {
+        alert(`${file}の読み込みに失敗しました。`);
+      };
+      reader.onload = () => {
+        const str = String.fromCharCode.apply(
+          "",
+          new Uint8Array(reader.result)
+        );
+
+        const sjisData = Encoding.convert(str, {
+          to: "UNICODE",
+          from: "AUTO"
+        });
+
+        callBack(sjisData);
+      };
+
+      reader.readAsArrayBuffer(file);
     }
   }
 };
