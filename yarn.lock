@@ -2925,6 +2925,11 @@ encodeurl@~1.0.2:
   resolved "https://registry.npm.taobao.org/encodeurl/download/encodeurl-1.0.2.tgz#ad3ff4c86ec2d029322f5a02c3a9a606c95b3f59"
   integrity sha1-rT/0yG7C0CkyL1oCw6mmBslbP1k=
 
+encoding-japanese@^1.0.29:
+  version "1.0.29"
+  resolved "https://registry.npm.taobao.org/encoding-japanese/download/encoding-japanese-1.0.29.tgz#f66db17f2afaadf9a38b6b0227c0c877d2f2c5b1"
+  integrity sha1-9m2xfyr6rfmji2sCJ8DId9LyxbE=
+
 end-of-stream@^1.0.0, end-of-stream@^1.1.0:
   version "1.4.1"
   resolved "https://registry.npm.taobao.org/end-of-stream/download/end-of-stream-1.4.1.tgz#ed29634d19baba463b6ce6b80a37213eab71ec43"
