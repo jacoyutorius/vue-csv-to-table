@@ -4,7 +4,7 @@
   "description": "Vue component for upload CSV",
   "author": "jacoyutorius",
   "license": "ISC",
-  "private": true,
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
