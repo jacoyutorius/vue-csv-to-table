@@ -1,17 +1,44 @@
 <template>
   <div id="csv-to-table">
-    <form action>
-      <div>
-        <label>Header Row count</label>
-        <input type="number" v-model="headerRowCount" />
-      </div>
-      <div>
-        <input type="file" @change="uploaded" />
-      </div>
-    </form>
-
     <section>
-      <table>
+      <form action>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Header Row count</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control">
+                <input id="headerRowCount" class="input" type="number" v-model="headerRowCount" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">CSV file</label>
+          </div>
+          <div class="field-body">
+            <div class="file has-name is-fullwidth">
+              <label class="file-label">
+                <input class="file-input" type="file" @change="uploaded" />
+                <span class="file-cta">
+                  <span class="file-icon">
+                    <i class="fas fa-upload"></i>
+                  </span>
+                  <span class="file-label">Choose a file…</span>
+                </span>
+                <span class="file-name">{{ fileName }}</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <section class="table-container">
+      <table class="table is-bordered is-hoverable is-fullwidth">
         <thead>
           <tr v-for="(row, rowIndex) in csvHeader" v-bind:key="rowIndex">
             <td v-if="showCheckbox && rowIndex === 0">
@@ -47,6 +74,7 @@ export default {
   },
   data() {
     return {
+      fileName: "",
       headerRowCount: 2, // default 0
       csvHeader: [],
       csvData: []
@@ -60,6 +88,8 @@ export default {
       const file = e.target && e.target.files && e.target.files[0];
 
       if (file) {
+        this.fileName = file.name;
+
         this.loadCsv(file, sjisData => {
           const lineArray = sjisData.split("\r");
           const itemArray = [];
@@ -104,3 +134,17 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+section {
+  margin: 1em;
+}
+
+input#headerRowCount {
+  width: 4em;
+}
+
+table {
+  table-layout: auto;
+}
+</style>
