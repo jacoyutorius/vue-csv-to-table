@@ -1,6 +1,9 @@
 {
   "name": "vue-csv-to-table",
   "version": "0.1.0",
+  "description": "Vue component for upload CSV",
+  "author": "jacoyutorius",
+  "license": "ISC",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
