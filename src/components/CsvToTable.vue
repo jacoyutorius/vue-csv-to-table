@@ -96,9 +96,7 @@ export default {
     };
   },
   methods: {
-    onCheckBoxCheck: function(row) {
-      console.log(row);
-    },
+    onCheckBoxCheck: function() {},
     uploaded: function(e) {
       const file = e.target && e.target.files && e.target.files[0];
 
