@@ -4,7 +4,7 @@
       <form action>
         <div class="field is-horizontal">
           <div class="field-label is-normal">
-            <label class="label">Header Row count</label>
+            <label class="label">{{ headerRowCountLabelText }}</label>
           </div>
           <div class="field-body">
             <div class="field">
@@ -17,7 +17,7 @@
 
         <div class="field is-horizontal">
           <div class="field-label is-normal">
-            <label class="label">CSV file</label>
+            <label class="label">{{ uploadButtonLabelText }}</label>
           </div>
           <div class="field-body">
             <div class="file has-name is-fullwidth">
@@ -27,7 +27,7 @@
                   <span class="file-icon">
                     <i class="fas fa-upload"></i>
                   </span>
-                  <span class="file-label">Choose a file…</span>
+                  <span class="file-label">{{ uploadButtonText }}</span>
                 </span>
                 <span class="file-name">{{ fileName }}</span>
               </label>
@@ -70,12 +70,27 @@ export default {
       type: Boolean,
       default: true,
       required: false
+    },
+    headerRowCountLabelText: {
+      type: String,
+      default: "Header Rows count",
+      required: false
+    },
+    uploadButtonLabelText: {
+      type: String,
+      default: "CSV file",
+      required: false
+    },
+    uploadButtonText: {
+      type: String,
+      default: "Choose file...",
+      required: false
     }
   },
   data() {
     return {
       fileName: "",
-      headerRowCount: 2, // default 0
+      headerRowCount: 0, // default 0
       csvHeader: [],
       csvData: []
     };

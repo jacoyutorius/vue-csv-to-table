@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
 import CsvToTable from "./components/CsvToTable.vue";
 
 export default {
