@@ -1,29 +1,13 @@
 # vue-csv-to-table
 
-## Project setup
-```
-yarn install
-```
+Vue component for upload CSV.
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+[![Image from Gyazo](https://i.gyazo.com/338e9c39b1fee39db63343c586b392b7.gif)](https://gyazo.com/338e9c39b1fee39db63343c586b392b7)
 
-### Compiles and minifies for production
-```
-yarn run build
-```
+## component
 
-### Run your tests
+```html
+<div id="app">
+  <csv-to-table />
+</div>
 ```
-yarn run test
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
